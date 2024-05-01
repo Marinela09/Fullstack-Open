@@ -27,6 +27,7 @@ const App = () => {
   }
 
   const [maxIndex, setMaxIndex] = useState(0)
+  const [maxValue, setMaxValue] = useState(0)
 
   const [points, setPoints] = useState(new Array(max).fill(0))
   const vote = () => {
@@ -35,18 +36,20 @@ const App = () => {
     setPoints(pointsCopy)
     
     let maxInd = 0; 
+    let maxV = 0;
     for (let i = 1; i < max; i++) { 
           if (pointsCopy[i] > pointsCopy[maxInd]) { 
               maxInd = i; 
+              maxV = pointsCopy[i];
+              
           } 
     } 
     setMaxIndex(maxInd)
+    setMaxValue(maxV)
    
   }
   
 
-
-  
   return (
     <div>
       <h1>Anecdote of the day</h1>
@@ -54,8 +57,8 @@ const App = () => {
       <Button onClick={rnum} text="next anecdote" />
       <Button onClick={vote} text="vote"/>
       <h1>Anecdote with most votes</h1>
-      <div>{anecdotes[maxIndex]}</div>
-
+      <div>{anecdotes[maxIndex]} </div>
+      <div>has {maxValue} votes</div>
      
     </div>
   )
